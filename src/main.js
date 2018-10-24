@@ -7,6 +7,8 @@ import 'lib-flexible/flexible'
 import '../static/css/reset.css'
 
 
+import 'swiper/dist/css/swiper.min.css'
+
 
 
 Vue.config.productionTip = false

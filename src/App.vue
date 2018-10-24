@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <router-view/>
-    App
     <FooterGuide v-if="$route.meta.showFooter"/>
 
   </div>
@@ -23,7 +22,7 @@ export default {
     width 100%
     height 100%
     /*background-color #f5f5f5*/
-    overflow hidden
+    /*overflow hidden*/
     background #eeeeee
 
 </style>
