@@ -48,6 +48,7 @@
     bottom 0
     left 0
     right 0
+    z-index 5
     background-color #fafafa
     border-top 1px solid #d9d9d9
     .footer_guide

@@ -10,106 +10,49 @@
       </div>
     </header>
     <div class="hdScorllX">
-      <div class="hdScorllItem">
-        <span>推荐</span>
-        <span>居家</span>
-        <span>鞋包</span>
-        <span>服裝</span>
-        <span>推荐</span>
-        <span>推荐</span>
-        <span>推荐</span>
-        <span>推荐</span>
-        <span>推荐</span>
-        <span>推荐</span>
-        <span>推荐</span>
-      </div>
+      <ul class="hdScorllItem" ref="picsUl">
+        <li v-for="(item,index) in home_data. headCateList" :key="index" ref="hdScorll" @click="listIndex(index)" :class="{active:index===itemIndex}">{{item.name}}</li>
+      </ul>
     </div>
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <a href="javascript:" class="link_to_food">
-            <img
-              src="https://yanxuan.nosdn.127.net/fc52e260d16abdff1a8777a713c67aa2.jpg?imageView&amp;quality=75&amp;thumbnail=750x0">
-          </a>
+        <div class="swiper-slide" v-for="(focus,index) in home_data.focusList" :key="index">
+          <img :src="focus.picUrl" alt="">
         </div>
       </div>
       <div class="swiper-pagination"></div>
     </div>
     <ul class="g-grow">
-      <li class="item">
-        <img src="http://yanxuan.nosdn.127.net/cae45612b8aae577d8bd73338e2fc02c.png">
-        <span>网易自营品牌</span>
-      </li>
-      <li class="item">
-        <img src="http://yanxuan.nosdn.127.net/cae45612b8aae577d8bd73338e2fc02c.png">
-        <span>网易自营品牌</span>
-      </li>
-      <li class="item">
-        <img src="http://yanxuan.nosdn.127.net/cae45612b8aae577d8bd73338e2fc02c.png">
-        <span>网易自营品牌</span>
+      <li class="item" v-for="(policyDesc,index) in home_data.policyDescList" :key="index">
+        <img :src="policyDesc.icon">
+        <div class="item_i">
+          <span>{{policyDesc.desc}}</span>
+        </div>
       </li>
     </ul>
     <div class="brand">
-      <header class="brand-header">
+      <div class="brand-header">
         <a>
           <span>品牌制造商直供</span>
           <i class="right-icon"></i>
         </a>
-      </header>
+      </div>
       <div class="brand-goods">
         <ul>
-          <li class="goods left-goods">
+          <li class="goods" v-for="(tag,index) in tagData" :key="index">
             <a>
               <div class="content-goods">
-                <h4>海外制造商</h4>
+                <h4>{{tag.name}}</h4>
                 <div class="price">
-                  <span class="price1">9.9</span>
+                  <span class="price1">{{tag.floorPrice}}</span>
                   <span class="price2">元起</span>
                 </div>
-                <i class="shangxin-icon"></i>
+                <i class="shangxin-icon" v-show="tag.newOnShelf"></i>
               </div>
-              <img src="http://yanxuan.nosdn.127.net/8d670dfdf89315316160266b9a81f68a.png?imageView&amp;thumbnail=355x0&amp;quality=65" >
+              <img :src="tag.picUrl" >
             </a>
-          </li>
-          <li class="goods">
-            <a>
-              <div class="content-goods">
-                <h4>海外制造商</h4>
-                <div class="price">
-                  <span class="price1">9.9</span>
-                  <span class="price2">元起</span>
-                </div>
-                <i class="shangxin-icon"></i>
-              </div>
-              <img src="http://yanxuan.nosdn.127.net/8d670dfdf89315316160266b9a81f68a.png?imageView&amp;thumbnail=355x0&amp;quality=65" >
-            </a>
-          </li>
-          <li class="goods">
-            <a>
-              <div class="content-goods">
-                <h4>海外制造商</h4>
-                <div class="price">
-                  <span class="price1">9.9</span>
-                  <span class="price2">元起</span>
-                </div>
-                <i class="shangxin-icon"></i>
-              </div>
-              <img src="http://yanxuan.nosdn.127.net/8d670dfdf89315316160266b9a81f68a.png?imageView&amp;thumbnail=355x0&amp;quality=65" >
-            </a>
-          </li>
-          <li class="goods right-goods">
-            <a>
-              <div class="content-goods">
-                <h4>海外制造商</h4>
-                <div class="price">
-                  <span class="price1">9.9</span>
-                  <span class="price2">元起</span>
-                </div>
-                <i class="shangxin-icon"></i>
-              </div>
-              <img src="http://yanxuan.nosdn.127.net/8d670dfdf89315316160266b9a81f68a.png?imageView&amp;thumbnail=355x0&amp;quality=65" >
-            </a>
-          </li>
+          </li >
+
         </ul>
       </div>
     </div>
@@ -123,87 +66,27 @@
       </a>
     </div>
     <div class="ItemList">
-      <ul>
-        <li>
+      <ul class="ItemList_m">
+        <li v-for="(newItem,index) in home_data.newItemList" :key="index">
           <a>
             <div class="img-warp">
-              <img src="http://yanxuan.nosdn.127.net/f8a1351045e3a4848b81c3036d229c1c.png?imageView&quality=65&thumbnail=330x330">
+              <img :src="newItem.listPicUrl">
             </div>
             <div class="item-name">
-              <span>限时购</span>
+              <span>新品</span>
             </div>
             <div class="item-desc ellipsis " >
-              <span class="ellipsis">古法热敷，研磨艾绒，专业的身体调理</span>
+              <span class="ellipsis">{{newItem.name}}</span>
             </div>
             <div class="item-desc1">
-              <span>古法热敷，研磨艾绒，专业的身体调理</span>
+              <span>{{newItem.simpleDesc}}</span>
             </div>
             <div class="item-price">
               <span class="maney">￥</span>
-              <span class="lost">199</span>
+              <span class="lost">{{newItem.retailPrice}}</span>
             </div>
           </a>
-        </li>
-        <li>
-          <a>
-            <div class="img-warp">
-              <img src="http://yanxuan.nosdn.127.net/f8a1351045e3a4848b81c3036d229c1c.png?imageView&quality=65&thumbnail=330x330">
-            </div>
-            <div class="item-name">
-              <span>限时购</span>
-            </div>
-            <div class="item-desc ellipsis " >
-              <span class="ellipsis">古法热敷，研磨艾绒，专业的身体调理</span>
-            </div>
-            <div class="item-desc1">
-              <span>古法热敷，研磨艾绒，专业的身体调理</span>
-            </div>
-            <div class="item-price">
-              <span class="maney">￥</span>
-              <span class="lost">199</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a>
-            <div class="img-warp">
-              <img src="http://yanxuan.nosdn.127.net/f8a1351045e3a4848b81c3036d229c1c.png?imageView&quality=65&thumbnail=330x330">
-            </div>
-            <div class="item-name">
-              <span>限时购</span>
-            </div>
-            <div class="item-desc ellipsis " >
-              <span class="ellipsis">古法热敷，研磨艾绒，专业的身体调理</span>
-            </div>
-            <div class="item-desc1">
-              <span>古法热敷，研磨艾绒，专业的身体调理</span>
-            </div>
-            <div class="item-price">
-              <span class="maney">￥</span>
-              <span class="lost">199</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a>
-            <div class="img-warp">
-              <img src="http://yanxuan.nosdn.127.net/f8a1351045e3a4848b81c3036d229c1c.png?imageView&quality=65&thumbnail=330x330">
-            </div>
-            <div class="item-name">
-              <span>限时购</span>
-            </div>
-            <div class="item-desc ellipsis " >
-              <span class="ellipsis">古法热敷，研磨艾绒，专业的身体调理</span>
-            </div>
-            <div class="item-desc1">
-              <span>古法热敷，研磨艾绒，专业的身体调理</span>
-            </div>
-            <div class="item-price">
-              <span class="maney">￥</span>
-              <span class="lost">199</span>
-            </div>
-          </a>
-        </li>
+        </li >
         <li class="item-more">
           <a>
             <span>查看全部</span>
@@ -237,85 +120,31 @@
       <a href="javascript:;"></a>
     </div>
     <nav class="goodsSale">
-      <header class="g_header">
+      <div class="g_header">
         <a href="javascript:;">
           <span>专题精选</span>
           <i></i>
         </a>
-      </header>
+      </div>
       <div class="topic-items">
         <div class="topicScrollBox">
           <ul>
-            <li>
+            <li v-for="(topic,index) in home_data.topicList" :key="index">
               <a href="javascript:;">
-                <img src="https://yanxuan.nosdn.127.net/6aed8c47252129252cb1c14c6c856836.jpg?imageView&thumbnail=575y322&enlarge=1&quality=75">
+                <img :src="topic.scenePicUrl">
               </a>
               <div class="item-price">
-                <h4>今年女鞋更好穿的秘密</h4>
-                <span>88元起</span>
+                <h4>{{topic.title}}</h4>
+                <span>{{topic.priceInfo}}元起</span>
               </div>
-              <div class="item-info">旅途中用的彩妆，便携持久才是王道。</div>
-            </li>
-            <li>
-              <a href="javascript:;">
-                <img src="https://yanxuan.nosdn.127.net/6aed8c47252129252cb1c14c6c856836.jpg?imageView&thumbnail=575y322&enlarge=1&quality=75">
-              </a>
-              <div class="item-price">
-                <h4>今年女鞋更好穿的秘密</h4>
-                <span>88元起</span>
-              </div>
-              <div class="item-info">旅途中用的彩妆，便携持久才是王道。</div>
-            </li>
-            <li>
-              <a href="javascript:;">
-                <img src="https://yanxuan.nosdn.127.net/6aed8c47252129252cb1c14c6c856836.jpg?imageView&thumbnail=575y322&enlarge=1&quality=75">
-              </a>
-              <div class="item-price">
-                <h4>今年女鞋更好穿的秘密</h4>
-                <span>88元起</span>
-              </div>
-              <div class="item-info">旅途中用的彩妆，便携持久才是王道。</div>
+              <div class="item-info">{{topic.subtitle}}</div>
             </li>
           </ul>
         </div>
       </div>
 
     </nav>
-    <div class="goodsShow">
-        <h3>居家好物</h3>
-        <ul class="list" >
-          <li class="item">
-            <a href="javascript:;">
-              <img src="http://yanxuan.nosdn.127.net/52b9ee8f296cfd5f8157ac97c0874430.png?imageView&quality=65&thumbnail=330x330" alt="">
-              <div class="desc">热销5万+条，一条被子过冬</div>
-              <div class="name">升级款95%白鹅绒秋冬加厚羽绒被</div>
-              <div class="price">￥1190</div>
-            </a>
-          </li>
-          <li class="item">
-            <a href="javascript:;">
-              <img src="http://yanxuan.nosdn.127.net/52b9ee8f296cfd5f8157ac97c0874430.png?imageView&quality=65&thumbnail=330x330" alt="">
-              <div class="desc">热销5万+条，一条被子过冬</div>
-              <div class="name">升级款95%白鹅绒秋冬加厚羽绒被</div>
-              <div class="price">￥1190</div>
-            </a>
-          </li>
-          <li class="item">
-            <a href="javascript:;">
-              <img src="http://yanxuan.nosdn.127.net/52b9ee8f296cfd5f8157ac97c0874430.png?imageView&quality=65&thumbnail=330x330" alt="">
-              <div class="desc">热销5万+条，一条被子过冬</div>
-              <div class="name">升级款95%白鹅绒秋冬加厚羽绒被</div>
-              <div class="price">￥1190</div>
-            </a>
-          </li>
-          <li class="item">
-            <a href="javascript:;" class="move">
-              <p>更多居家好物</p>
-              <i></i>
-            </a>
-          </li>
-        </ul>
-    </div>
+    <CartList v-for="(cate,index) in home_data.cateList"  v-if="home_data.cateList" :cateData="cate" :key="index"/>
     <div class="copyright">
       <div class="content">
         <div class="bd">
@@ -329,27 +158,105 @@
         </p>
       </div>
     </div>
-
-
-
-
-
-
-
   </section>
 </template>
 
 <script>
   import Swiper from 'swiper'
+  import BScroll from 'better-scroll'
   import 'swiper/dist/css/swiper.css'
+
+  import CartList from './CartList/CartList.vue'
+
+  import {mapState}from 'vuex'
+
+
+
+
 
   export default {
     data () {
       return {
+        itemIndex:0
 
       }
+    },
+
+
+    components:{
+      CartList
+    },
+    mounted(){
+      this.$store.dispatch('getHomeData',()=>{
+        this.$nextTick(()=>{
+          this._initScroll()
+        })
+      })
+
+    },
+
+
+    computed:{
+      ...mapState(['home_data']),
+
+      //截取4个专题精选内容
+      tagData(){
+        if(this.home_data.tagList){
+          const tagData =this.home_data.tagList.splice(0,4)
+          return tagData
+        }else {
+          return
+        }
+      }
+    },
+
+    methods:{
+      listIndex(index){
+        this.itemIndex=index
+      },
+
+      _initScroll(){
+        new BScroll('.hdScorllX', {
+          click: true,
+          scrollX: true, // 水平滑动
+        })
+        new BScroll('.ItemList', {
+          click: true,
+          scrollX: true, // 水平滑动
+        })
+        new BScroll('.topicScrollBox', {
+          click: true,
+          scrollX: true, // 水平滑动
+        })
+      }
+    },
+    watch:{
+      home_data(value){
+        this.$nextTick(()=>{
+          this._initScroll()
+
+          new Swiper('.swiper-container', {
+            loop: true, // 循环模式
+            centeredSlides:true,
+            autoplay: {
+              delay: 3000,
+            },
+            // 如果需要分页器
+            pagination: {
+              el: '.swiper-pagination',
+            },
+          })
+
+
+
+        })
+
+      }
+
     }
+
   }
+
 
 </script>
 
@@ -406,61 +313,51 @@
           > span
             color: #666
             font-size 22px
-    .hdScorllX {
-      width 1592px;
-      height 60px
-      overflow hidden;
-      background #ffffff;
-      padding 0 18px
-      z-index 5
-      position fixed
-      left 0
-      top 88px
-      .hdScorllItem {
-        width 100%
-        height 60px
+
+    .hdScorllX
+      width: 100%;
+      overflow: hidden;
+      background: #ffffff;
+      display: flex;
+      padding: 0 0 12px 0;
+      margin-top 100px
+      .hdScorllItem
         display: flex;
         justify-content: space-between;
         align-items: center;
-        span {
-          width 88px
+        li
+          width: 144px;
           height 60px
-          text-align center;
+          text-align: center;
           line-height 60px
-          flex-shrink 0
-          flex-wrap: nowrap;
+          flex-shrink:0;
+          flex-wrap:nowrap;
+          vertical-align middle
+          display block
           padding 0 16px
-          font-size 30px
-          &.active {
+          font-size: 28px
+          &.active
             padding: 0 0 12px 0;
             border-bottom: 3px solid #b4282d;
             color: #b4282d;
-          }
-        }
-      }
-    }
 
     .swiper-container
       width 100%
-      height 400px
-      margin-top 60px
+      overflow hidden
+      margin-top 0
       .swiper-wrapper
-        width 100%
-        height 100%
+        height 400px
         .swiper-slide
           display flex
           justify-content center
           align-items flex-start
           flex-wrap wrap
-          .link_to_food
+          img
+            display inline-block
             width 100%
             height 100%
-            img
-              display inline-block
-              width 100%
-              height 100%
       .swiper-pagination
-        > span.swiper-pagination-bullet-active
+         span.swiper-pagination-bullet-active
           background #02a774
     .g-grow
       width 100%
@@ -472,19 +369,24 @@
         display flex
         width 100%
         height 72px
-        padding 0 30px
+        padding 0 20px
         justify-content space-between
         align-items center
         img
           display flex
-          width 32px
-          height 32px
+          width 28px
+          height 28px
           justify-content center
           align-items center
-        span
-          font-size 14px
-          color: #333
-          line-height 72px
+        .item_i
+          width 100%
+          height 100%
+          span
+            font-size 14px
+            color: #333
+            line-height 72px
+            margin-left 3px
+
 
     .brand
       background-color #fff
@@ -565,6 +467,7 @@
                 margin-top 10px
                 background-repeat: no-repeat;
                 background-size: 100% 100%;
+                z-index 1
               img
                 width 100%
                 height 100%
@@ -575,7 +478,7 @@
     .move
       width 100%
       height 260px
-      /*margin-bottom 32px*/
+      margin-bottom 32px
       /*background-color #fff !important*/
       display flex
       justify-content center
@@ -590,6 +493,7 @@
             width 144px
             height 41px
             font-size 36px
+            color: #8BA0B6;
         .all
           display flex
           justify-content center
@@ -600,6 +504,7 @@
           margin-top 32px
           span
             font-size 28px
+            color: #8BA0B6;
           .arrow-right
             background: url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/indexNewArrow-f3b56d449b.png);
             width 10px
@@ -607,23 +512,24 @@
             background-repeat no-repeat
             margin-left 10px
     .ItemList
-      width 100%
       height: 460px
       background-color: #fff;
       overflow hidden
       display flex
-      ul
+      .ItemList_m
         display flex
         justify-content center
         align-items center
-        margin-top 32px
+        flex-flow: row nowrap;
+        padding 0
         li
           width 278px
           height 100%
-          margin-left: 20px;
+          margin-left: 30px;
           float: left;
           position: relative
           overflow: hidden
+          margin-right 0
           a
           .img-warp
             width 280px
@@ -680,22 +586,23 @@
               color: #b4282d;
               font-family: PingFangSC-Regular;
 
-          .item-more
-            width 278px
-            height 280px
-            display: block;
-            border: 5px solid #F4F4F4;
-            margin: 0 30px
-            line-height: 280px
-            text-align: center;
-            a
+        .item-more
+          width 278px
+          height 280px
+          display: block;
+          border: 5px solid #F4F4F4;
+          margin: 0 30px
+          line-height: 280px
+          text-align: center;
+          margin-bottom 146px
+          a
+            width 100%
+            height 100%
+            span
               width 100%
               height 100%
-              span
-                width 100%
-                height 100%
-                font-size: 30 px
-                color: #666
+              font-size: 30 px
+              color: #666
 
 
 
@@ -866,85 +773,7 @@
                 color: #7F7F7F;
 
 
-    .goodsShow
-      background #ffffff
-      margin-bottom 20px
-      h3
-        width 100%
-        height 120px
-        line-height 120px
-        text-align: center
-        font-size 28px
-        color #333333
-      .list
-        position relative
-        z-index 0
-        overflow hidden
-        .item
-          float left
-          overflow hidden
-          width 50%
-          box-sizing border-box
-          background #ffffff
-          &:nth-child(odd)
-            padding 0 10px 33px 20px
-          &:nth-child(even)
-            padding 0 20px 33px 10px
-          a
-            display block
-            height 504px
-            font-size 0
-            overflow hidden
-            img
-              width: 345px
-              height 345px
-              border-radius 4px  0 0 4px
-              background-color #f4f4f4
-            .desc
-              width 345px
-              padding 20px 10px
-              background-color #f1ece2
-              border-radius 0 4px 4px 0
-              color #9f8a60
-              letter-spacing 0
-              line-height 30px
-              font-size 24px
-              ellipsis()
-            .name
-              margin-top 10px
-              padding 0 10px
-              color #333333
-              font-size 27px
-              line-height 48px
-              ellipsis()
-            .price
-              line-height 1
-              font-size 32px
-              color $on
-              padding 0 10px
-            &.move
-              border-radius 4px
-              padding 128px 0
-              box-sizing border-box
-              display flex
-              flex-direction column
-              align-items center
-              justify-content center
-              background #f4f4f4
-              height 416px
-              p
-                color #333333
-                font-size 32px
-                line-height 32px
-                margin-bottom 50px
-              i
-                display block
-                background-image: url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/goodGridMore-233aaf669a.png);
-                vertical-align middle
-                background-repeat no-repeat
-                background-size 100% 100%
-                width 66px
-                height 66px !important
+
     .copyright
       border-top 1px solid rgba(0,0,0,.15);
       background-color #414141

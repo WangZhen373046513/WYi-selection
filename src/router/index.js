@@ -54,12 +54,12 @@ export default new VueRouter({
       path:'/profile',
       component:Profile,
       meta: {
-        showFooter: true // 标识需要显示footer
+        showFooter: false // 标识需要显示footer
       }
     },
     {
       path:'/',
-      redirect:Home,
+      redirect:'/home',
     },
   ]
 })

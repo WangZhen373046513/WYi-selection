@@ -2,9 +2,7 @@
   <div class="personal">
     <header>
       <div class="row">
-        <div class="home" @click="$router.push('/msite')">
-          <div></div>
-        </div>
+        <div class="home" @click="$router.push('/msite')"></div>
         <div class="logo"></div>
         <div class="right">
           <div class="search">
@@ -110,10 +108,10 @@
         height 44px
         display inline-block
         vertical-align middle
-        background-position: 0px 132px;
-        i
-          background-image: url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/hd-s28ce1ea0be-3d137edb2d.png);
-          font-size 48px
+        background-position: 0 -82px;
+        background-image: url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/hd-s28ce1ea0be-3d137edb2d.png);
+        font-size 48px
+        background-size 172px 398px
       .logo
         position absolute
         top 0

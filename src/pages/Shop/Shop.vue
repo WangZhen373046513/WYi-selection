@@ -25,7 +25,7 @@
       <div class="txt">
         <div class="inner">
           <div class="txtCon">去添加点什么吧</div>
-          <div class="txtBtn">登录</div>
+          <div class="txtBtn" @click="$router.replace('/profile')">登录</div>
         </div>
       </div>
     </div>
@@ -89,6 +89,7 @@
           width 10px
           height 10px
           font-size 10px
+          background-repeat no-repeat
           color #d9d9d9
           margin-right 8px
           background-image: url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/servicePolicy-1d7541974f.png);

@@ -8,87 +8,66 @@
         </div>
       </div>
     </header>
-    <section class="main">
-      <div class="listMenu">
-        <div class="inner">
-          <ul>
-            <li class="item">
-              <a href="javascript:;">推荐专区</a>
-            </li>
-            <li class="item">
-              <a href="javascript:;">推荐专区</a>
-            </li>
-            <li class="item">
-              <a href="javascript:;">推荐专区</a>
-            </li>
-            <li class="item">
-              <a href="javascript:;">推荐专区</a>
-            </li>
-            <li class="item">
-              <a href="javascript:;">推荐专区</a>
-            </li>
-            <li class="item">
-              <a href="javascript:;">推荐专区</a>
-            </li>
-            <li class="item">
-              <a href="javascript:;">推荐专区</a>
-            </li>
-            <li class="item">
-              <a href="javascript:;">推荐专区</a>
-            </li>
-            <li class="item">
-              <a href="javascript:;">推荐专区</a>
-            </li>
-            <li class="item">
-              <a href="javascript:;">推荐专区</a>
-            </li>
-            <li class="item">
-              <a href="javascript:;">推荐专区</a>
-            </li>
-            <li class="item">
-              <a href="javascript:;">推荐专区</a>
-            </li>
-            <li class="item">
-              <a href="javascript:;">推荐专区</a>
-            </li>
-            <li class="item">
-              <a href="javascript:;">推荐专区</a>
-            </li>
-            <li class="item">
-              <a href="javascript:;">推荐专区</a>
-            </li>
-            <li class="item">
-              <a href="javascript:;">推荐专区</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <Detail/>
 
-    </section>
 
   </section>
-
-
-
-
-
 </template>
 
 <script>
+  import BScroll from 'better-scroll'
+  import { mapState } from 'vuex'
+  import Detail from './Detail/Detail.vue'
+
   export default {
     data () {
       return {}
+    },
+
+    components:{
+      Detail
+    },
+    mounted () {
+      this.$store.dispatch('getNavData', () => {
+        this.$nextTick(() => {
+          this._initScroll()
+        })
+      })
+    },
+    computed: {
+      ...mapState(['nav_data'])
+    },
+    methods:{
+      _initScroll(){
+        new BScroll('.listMenu', {
+          click: true,
+        })
+      }
+
+    },
+
+    watch:{
+      nav_data(value){
+        this.$nextTick(()=>{
+          this._initScroll()
+        })
+      }
+
     }
+
   }
+
 
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
   @import '../../common/stylus/mixins.styl'
   .list
-    margin-bottom 100px
+    padding-bottom 100px
+    box-sizing border-box
     height 100%
     background #ffffff
+    overflow hidden
     .search
       position fixed
       top 0
@@ -119,81 +98,22 @@
           align-items center
           justify-content center
           height 56px
-          font-size 28px
+          font-size 41px
           background-color #ededed
           border-radius 8px
-          >.icon
+          > .icon
             display inline-block
             vertical-align middle
             width: 28px
             height 28px
             background-image: url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/search2-2fb94833aa.png);
             background-repeat no-repeat
+            background-size 28px
             margin-right 10px
-          >.placeholder
+          > .placeholder
             font-size 27px
             color #666666
-    .main
-      margin-top 88px
-      .listMenu
-        position fixed
-        top 88px
-        left 0
-        bottom 0
-        z-index 4
-        width 162px
-        background-color #ffffff
-        &:after
-          content ''
-          position absolute
-          background-color rgba(0,0,0,.15)
-          top 0
-          bottom 0
-          width 1px
-          -webkit-transform-origin 100% 50% 0
-          transform-origin 100% 50% 0
-          right 0
-      .inner
-        width 100%
-        max-height 1104px
-        padding-top 40px
-        overflow hidden
-        >ul
-          padding-bottom 138px
-          >.item
-            width 100%
-            height 76px
-            line-height 76px
-            text-align center
-            border none
-              >a
-                font-size 36px
-                line-height 76px
-                font-weight 700
-                color $on
-            &.active
-              position relative
-              &:before
-                content ''
-                position absolute
-                top 0
-                left 0
-                bottom 0
-                width: 6px
-                background-color $on
-              >a
-                font-size 36px
-                line-height 76px
-                font-weight 700
-                color $on
-            +.item
-              margin-top 20px
-            >a
-              display block
-              color #333333
-              font-size 28px
-              line-height 56px
-              ellipsis()
+
 
 
 </style>
